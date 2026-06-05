@@ -1,495 +1,552 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="filename" content="index.html">
-    <title>TOBEU - 모던 가구 브랜드</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8">
+<title>박수진 · UX·UI 디자인 강사</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="tov-tokens.css">
+<style>
+  :root {
+    --page-max: 1232px;
+    --page-pad: 40px;
+    --sec-pad-y: 120px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--tov-bg-surface); color: var(--tov-text-1); }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+  .wrap {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding-left: var(--page-pad);
+    padding-right: var(--page-pad);
+  }
 
-        .container {
-            max-width: 90rem;
-            margin: 0 auto;
-            padding: 0 1.25rem;
-        }
+  /* ---------- eyebrow / section heading ---------- */
+  .eyebrow {
+    font: var(--tov-fw-bold) var(--tov-fs-meta)/1 var(--tov-font-sans);
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--tov-action);
+    margin: 0 0 18px;
+  }
+  .sec-title {
+    font: var(--tov-fw-bold) var(--tov-fs-h1)/1.3 var(--tov-font-sans);
+    letter-spacing: var(--tov-ls-h1);
+    color: var(--tov-text-1);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .sec-head { margin-bottom: 56px; }
 
-        /* Header */
-        .header {
-            background: #fff;
-            padding: 1.5rem 0;
-            box-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+  /* ================= HEADER ================= */
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--tov-border-2);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 76px;
+  }
+  .brand { display: flex; align-items: baseline; gap: 10px; }
+  .brand .kr { font: var(--tov-fw-black) 24px/1 var(--tov-font-sans); letter-spacing: -1px; color: var(--tov-ink-900); }
+  .brand .en { font: var(--tov-fw-bold) 13px/1 var(--tov-font-sans); letter-spacing: 0.4px; color: var(--tov-ink-400); }
+  .nav-links { display: flex; align-items: center; gap: 38px; }
+  .nav-links a {
+    font: var(--tov-fw-bold) var(--tov-fs-body)/1 var(--tov-font-sans);
+    letter-spacing: -0.32px; color: var(--tov-ink-700);
+    transition: color var(--tov-dur-base) var(--tov-ease-out);
+  }
+  .nav-links a:hover { color: var(--tov-action); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: var(--tov-fw-bold) var(--tov-fs-body)/1 var(--tov-font-sans);
+    letter-spacing: -0.32px;
+    border-radius: var(--tov-radius-sm);
+    padding: 13px 22px; cursor: pointer;
+    transition: background var(--tov-dur-base) var(--tov-ease-out), color var(--tov-dur-base) var(--tov-ease-out), transform var(--tov-dur-fast) var(--tov-ease-out);
+  }
+  .btn-primary { background: var(--tov-action); color: var(--tov-action-fg); }
+  .btn-primary:hover { background: var(--tov-action-hover); }
+  .btn-primary:active { transform: scale(0.97); background: var(--tov-action-press); }
+  .btn-ghost { border: 1px solid var(--tov-ink-400); color: var(--tov-ink-700); }
+  .btn-ghost:hover { border-color: var(--tov-action); color: var(--tov-action); }
+  .btn .chev { font-size: 15px; }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  /* ================= HERO ================= */
+  .hero { position: relative; overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: end;
+    min-height: 660px;
+  }
+  .hero-text { padding: 96px 0 110px; }
+  .hero-role {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--tov-tint-100); color: var(--tov-action);
+    font: var(--tov-fw-bold) var(--tov-fs-body)/1 var(--tov-font-sans);
+    letter-spacing: -0.32px;
+    padding: 11px 18px; border-radius: var(--tov-radius-full);
+    margin-bottom: 30px;
+  }
+  .hero-role .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--tov-action); }
+  .hero-name {
+    font: var(--tov-fw-black) 76px/1.04 var(--tov-font-sans);
+    letter-spacing: -3.2px; color: var(--tov-ink-900); margin: 0;
+  }
+  .hero-name .en {
+    display: block; margin-top: 14px;
+    font: var(--tov-fw-bold) 24px/1 var(--tov-font-sans);
+    letter-spacing: 0.5px; color: var(--tov-ink-400);
+  }
+  .hero-desc {
+    margin: 30px 0 0; max-width: 520px;
+    font: var(--tov-fw-medium) 19px/1.62 var(--tov-font-sans);
+    letter-spacing: -0.35px; color: var(--tov-ink-500);
+    text-wrap: pretty;
+  }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--tov-bg-surface); border: 1px solid var(--tov-border-1);
+    border-radius: var(--tov-radius-full); padding: 11px 18px 11px 14px;
+    font: var(--tov-fw-bold) var(--tov-fs-meta)/1 var(--tov-font-sans);
+    letter-spacing: -0.28px; color: var(--tov-ink-700);
+    box-shadow: var(--tov-shadow-xs);
+    transition: border-color var(--tov-dur-base) var(--tov-ease-out), color var(--tov-dur-base) var(--tov-ease-out);
+  }
+  .chip:hover { border-color: var(--tov-action); color: var(--tov-action); }
+  .chip .ic { width: 22px; height: 22px; }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #8B7355;
-            letter-spacing: 0.125rem;
-        }
+  .hero-figure { position: relative; height: 640px; }
+  .hero-capsule {
+    position: absolute; top: 56px; bottom: 0; left: 40px;
+    right: calc(50% - 50vw);
+    background: var(--tov-tint-150);
+    border-radius: 220px 0 0 220px;
+  }
+  .hero-portrait {
+    position: absolute; bottom: 0; right: 4%;
+    height: 672px; width: auto; z-index: 2;
+    object-fit: contain; object-position: bottom center;
+    filter: drop-shadow(0 24px 40px rgba(31,52,80,0.22));
+  }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
+  /* ================= ABOUT ================= */
+  .about { padding: var(--sec-pad-y) 0; }
+  .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; align-items: start; }
+  .about-lede {
+    font: var(--tov-fw-bold) 30px/1.5 var(--tov-font-sans);
+    letter-spacing: -1px; color: var(--tov-ink-900); margin: 0;
+    text-wrap: pretty;
+  }
+  .about-lede b { color: var(--tov-action); }
+  .about-body p {
+    font: var(--tov-fw-medium) 18px/1.7 var(--tov-font-sans);
+    letter-spacing: -0.35px; color: var(--tov-ink-500); margin: 0 0 22px;
+    text-wrap: pretty;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+  .tag {
+    font: var(--tov-fw-bold) var(--tov-fs-meta)/1 var(--tov-font-sans);
+    letter-spacing: -0.28px; color: var(--tov-ink-700);
+    background: var(--tov-tint-50); border: 1px solid var(--tov-border-1);
+    border-radius: var(--tov-radius-full); padding: 10px 16px;
+  }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+  /* ================= FEATURED CONTENT ================= */
+  .featured { padding: var(--sec-pad-y) 0; }
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .fcard {
+    display: flex; flex-direction: column;
+    background: var(--tov-bg-surface);
+    border: 1px solid var(--tov-border-1);
+    border-radius: var(--tov-radius-lg);
+    box-shadow: var(--tov-shadow-md);
+    padding: 38px 34px 32px;
+    transition: box-shadow var(--tov-dur-slow) var(--tov-ease-out), transform var(--tov-dur-slow) var(--tov-ease-out);
+  }
+  .fcard:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-4px); }
+  .fcard .ic {
+    width: 64px; height: 64px; margin-bottom: 26px;
+  }
+  .fcard .kind {
+    font: var(--tov-fw-bold) 13px/1 var(--tov-font-sans);
+    letter-spacing: 1.2px; text-transform: uppercase; color: var(--tov-action);
+    margin-bottom: 12px;
+  }
+  .fcard h3 {
+    font: var(--tov-fw-bold) 23px/1.4 var(--tov-font-sans);
+    letter-spacing: -0.6px; color: var(--tov-ink-900); margin: 0 0 12px;
+  }
+  .fcard p {
+    font: var(--tov-fw-medium) var(--tov-fs-body)/1.62 var(--tov-font-sans);
+    letter-spacing: -0.32px; color: var(--tov-ink-500); margin: 0 0 26px;
+  }
+  .fcard .go {
+    margin-top: auto;
+    display: inline-flex; align-items: center; gap: 8px;
+    font: var(--tov-fw-bold) var(--tov-fs-body)/1 var(--tov-font-sans);
+    letter-spacing: -0.32px; color: var(--tov-ink-700);
+    transition: color var(--tov-dur-base) var(--tov-ease-out), gap var(--tov-dur-base) var(--tov-ease-out);
+  }
+  .fcard:hover .go { color: var(--tov-action); gap: 12px; }
 
-        .nav-links a:hover {
-            color: #C4A484;
-        }
+  /* ================= TEACHING ================= */
+  .teaching { padding: var(--sec-pad-y) 0; }
+  .teach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+  .teach-item {
+    display: flex; align-items: baseline; gap: 18px;
+    padding: 22px 4px; border-bottom: 1px solid var(--tov-border-1);
+  }
+  .teach-item .org {
+    font: var(--tov-fw-bold) 20px/1.4 var(--tov-font-sans);
+    letter-spacing: -0.6px; color: var(--tov-ink-900);
+    flex: 1;
+  }
+  .teach-item .role {
+    font: var(--tov-fw-medium) var(--tov-fs-body)/1.4 var(--tov-font-sans);
+    letter-spacing: -0.32px; color: var(--tov-ink-400);
+    white-space: nowrap;
+  }
 
-        .user-icon {
-            font-size: 1.25rem;
-            color: #333;
-            cursor: pointer;
-        }
+  /* ================= CAREER (tinted band) ================= */
+  .career { padding: var(--sec-pad-y) 0; background: var(--tov-tint-100); }
+  .career .sec-head p {
+    margin: 16px 0 0;
+    font: var(--tov-fw-medium) 18px/1.6 var(--tov-font-sans);
+    letter-spacing: -0.35px; color: var(--tov-ink-500);
+  }
+  .company-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .company {
+    background: var(--tov-bg-surface);
+    border: 1px solid var(--tov-border-1);
+    border-radius: var(--tov-radius-md);
+    padding: 30px 28px;
+    display: flex; align-items: center;
+    font: var(--tov-fw-bold) 21px/1.3 var(--tov-font-sans);
+    letter-spacing: -0.6px; color: var(--tov-ink-900);
+    transition: border-color var(--tov-dur-base) var(--tov-ease-out), box-shadow var(--tov-dur-base) var(--tov-ease-out);
+  }
+  .company:hover { border-color: var(--tov-blue-200); box-shadow: var(--tov-shadow-md); }
 
-        /* Hero Section */
-        .hero {
-            height: 37.5rem;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1556909459-f3a8cc1ab962?ixlib=rb-4.0.3&auto=format&fit=crop&w=1440&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
+  /* ================= CERTS ================= */
+  .certs { padding: var(--sec-pad-y) 0; }
+  .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
+  .cert-col {
+    border: 1px solid var(--tov-border-1);
+    border-radius: var(--tov-radius-lg);
+    padding: 36px 32px;
+  }
+  .cert-col .issuer {
+    font: var(--tov-fw-bold) 19px/1.4 var(--tov-font-sans);
+    letter-spacing: -0.5px; color: var(--tov-ink-900); margin: 0 0 6px;
+  }
+  .cert-col .issuer-en {
+    font: var(--tov-fw-bold) 13px/1 var(--tov-font-sans);
+    letter-spacing: 0.4px; color: var(--tov-action);
+    text-transform: uppercase; margin: 0 0 24px;
+  }
+  .cert-col ul { list-style: none; margin: 0; padding: 0; }
+  .cert-col li {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 14px 0; border-top: 1px solid var(--tov-border-2);
+    font: var(--tov-fw-bold) var(--tov-fs-body)/1.5 var(--tov-font-sans);
+    letter-spacing: -0.32px; color: var(--tov-ink-700);
+  }
+  .cert-col li:first-child { border-top: none; padding-top: 0; }
+  .cert-col li .mk { color: var(--tov-blue-200); font-size: 18px; line-height: 1.4; }
+  .cert-col li .date { margin-left: auto; color: var(--tov-ink-400); font-weight: 500; font-size: var(--tov-fs-meta); white-space: nowrap; }
 
-        .hero-content {
-            max-width: 50rem;
-        }
+  /* ================= CTA ================= */
+  .cta { background: var(--tov-action); }
+  .cta-inner {
+    padding: 96px 0 100px;
+    display: flex; align-items: center; justify-content: space-between; gap: 60px;
+  }
+  .cta h2 {
+    font: var(--tov-fw-black) 46px/1.3 var(--tov-font-sans);
+    letter-spacing: -2px; color: #fff; margin: 0;
+  }
+  .cta p {
+    margin: 18px 0 0;
+    font: var(--tov-fw-medium) 19px/1.6 var(--tov-font-sans);
+    letter-spacing: -0.35px; color: rgba(255,255,255,0.82);
+  }
+  .cta-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; min-width: 320px; }
+  .cta-mail {
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: var(--tov-radius-md); padding: 20px 24px;
+  }
+  .cta-mail .ic { width: 40px; height: 40px; }
+  .cta-mail .lbl { font: var(--tov-fw-medium) 13px/1 var(--tov-font-sans); letter-spacing: 0.4px; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 6px; }
+  .cta-mail .val { font: var(--tov-fw-bold) 20px/1 var(--tov-font-sans); letter-spacing: -0.4px; color: #fff; }
+  .btn-white { background: #fff; color: var(--tov-action); justify-content: center; padding: 17px 22px; font-size: 17px; }
+  .btn-white:hover { background: var(--tov-tint-100); }
 
-        .hero-subtitle {
-            font-size: 0.875rem;
-            letter-spacing: 0.25rem;
-            margin-bottom: 1.25rem;
-            opacity: 0.9;
-        }
+  /* ================= FOOTER ================= */
+  footer.site { background: var(--tov-bg-dark); color: #fff; }
+  .foot-inner { padding: 48px 0 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+  .foot-brand .kr { font: var(--tov-fw-black) 22px/1 var(--tov-font-sans); letter-spacing: -1px; color: #fff; }
+  .foot-brand .role { margin-top: 12px; font: var(--tov-fw-medium) var(--tov-fs-meta)/1.6 var(--tov-font-sans); letter-spacing: -0.28px; color: var(--tov-ink-300); }
+  .foot-links { display: flex; gap: 28px; }
+  .foot-links a { font: var(--tov-fw-bold) var(--tov-fs-meta)/1 var(--tov-font-sans); letter-spacing: -0.28px; color: var(--tov-ink-300); transition: color var(--tov-dur-base) var(--tov-ease-out); }
+  .foot-links a:hover { color: #fff; }
+  .foot-copy { font: var(--tov-fw-medium) var(--tov-fs-tiny)/1.5 var(--tov-font-sans); letter-spacing: -0.24px; color: var(--tov-ink-400); }
 
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 2.5rem;
-        }
+  /* ---------- reveal (visible by default; JS adds the hide-then-reveal) ---------- */
+  .reveal { transition: opacity 0.7s var(--tov-ease-out), transform 0.7s var(--tov-ease-out); }
+  .reveal.pre { opacity: 0; transform: translateY(24px); }
+  @media (prefers-reduced-motion: reduce) { .reveal, .reveal.pre { opacity: 1; transform: none; transition: none; } }
 
-        .cta-button {
-            display: inline-block;
-            padding: 0.875rem 2.5rem;
-            background: rgba(255,255,255,0.9);
-            color: #333;
-            text-decoration: none;
-            border-radius: 1.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background: #C4A484;
-            color: white;
-            transform: translateY(-0.125rem);
-        }
-
-        /* Hot Items Section */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 3.75rem;
-            letter-spacing: 0.125rem;
-            color: #333;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3.75rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 0.625rem;
-            overflow: hidden;
-            box-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-0.3125rem);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 15rem;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-name {
-            font-size: 1rem;
-            margin-bottom: 0.625rem;
-            color: #666;
-        }
-
-        .product-price {
-            font-size: 1.125rem;
-            font-weight: bold;
-            color: #C4A484;
-        }
-
-        /* New Product Section */
-        .new-product {
-            background: #F8F6F3;
-            padding: 5rem 0;
-        }
-
-        .new-product-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.75rem;
-            align-items: center;
-        }
-
-        .new-product-image {
-            width: 100%;
-            height: 25rem;
-            object-fit: cover;
-            border-radius: 0.625rem;
-        }
-
-        .new-product-info h3 {
-            font-size: 0.875rem;
-            letter-spacing: 0.125rem;
-            color: #999;
-            margin-bottom: 1.25rem;
-        }
-
-        .new-product-info h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .new-product-info p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-        }
-
-        .view-more-btn {
-            display: inline-block;
-            padding: 0.875rem 2.5rem;
-            background: #C4A484;
-            color: white;
-            text-decoration: none;
-            border-radius: 1.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .view-more-btn:hover {
-            background: #8B7355;
-            transform: translateY(-0.125rem);
-        }
-
-        /* Best Product Section */
-        .best-products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-            gap: 2.5rem;
-        }
-
-        .best-product-card {
-            display: flex;
-            background: white;
-            border-radius: 0.625rem;
-            overflow: hidden;
-            box-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.1);
-        }
-
-        .best-product-image {
-            width: 10rem;
-            height: 8rem;
-            object-fit: cover;
-        }
-
-        .best-product-content {
-            padding: 1.5rem;
-            flex: 1;
-        }
-
-        .best-product-content h4 {
-            font-size: 1.125rem;
-            margin-bottom: 0.625rem;
-            color: #333;
-        }
-
-        .best-product-content p {
-            font-size: 0.875rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .product-tags {
-            display: flex;
-            gap: 0.625rem;
-        }
-
-        .tag {
-            background: #C4A484;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.9375rem;
-            font-size: 0.75rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: #2C2C2C;
-            color: white;
-            padding: 3.75rem 0 2.5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3.75rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-info h4 {
-            color: #C4A484;
-            margin-bottom: 1.25rem;
-        }
-
-        .footer-info p {
-            font-size: 0.875rem;
-            line-height: 1.8;
-            color: #ccc;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.25rem;
-            justify-content: flex-end;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #C4A484;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2.5rem;
-            border-top: 0.0625rem solid #444;
-            color: #999;
-            font-size: 0.875rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 48rem) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .new-product-content {
-                grid-template-columns: 1fr;
-            }
-
-            .best-product-card {
-                flex-direction: column;
-            }
-
-            .best-product-image {
-                width: 100%;
-                height: 12.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-        }
-    </style>
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; min-height: 0; }
+    .hero-text { padding: 64px 0 40px; }
+    .hero-name { font-size: 56px; }
+    .hero-figure { height: 440px; }
+    .hero-capsule { left: 0; right: calc(50% - 50vw); top: 30px; border-radius: 160px 0 0 160px; }
+    .hero-portrait { right: 2%; height: 452px; width: auto; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cards-3, .company-grid, .cert-grid { grid-template-columns: 1fr; }
+    .teach-grid { grid-template-columns: 1fr; gap: 0; }
+    .cta-inner { flex-direction: column; align-items: flex-start; }
+    .cta h2 { font-size: 36px; }
+    .foot-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo">TOBEU</div>
-                <ul class="nav-links">
-                    <li><a href="about.html">브랜드 소개</a></li>
-                    <li><a href="product.html">제품 소개</a></li>
-                    <li><a href="#">리빙룸 스토리</a></li>
-                    <li><a href="#">베스트 제품</a></li>
-                    <li><a href="event.html">이벤트</a></li>
-                    <li><a href="#">고객센터</a></li>
-                </ul>
-                <i class="fas fa-user user-icon"></i>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-subtitle">SUCCESSFUL BUSINESS</p>
-            <h1 class="hero-title">고객과 함께 성장하는<br>토브 디자인</h1>
-            <a href="#" class="cta-button">VIEW NOW</a>
-        </div>
-    </section>
+<!-- ===================== HEADER ===================== -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="kr">박수진</span>
+      <span class="en">SUJIN&nbsp;PARK</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#content">콘텐츠</a>
+      <a href="#teaching">강의 경력</a>
+      <a href="#career">디자인 경력</a>
+      <a href="#certs">자격증</a>
+    </nav>
+    <a class="btn btn-primary" href="mailto:mybooboo@naver.com">강의 · 협업 문의<span class="chev">›</span></a>
+  </div>
+</header>
 
-    <!-- Hot Items -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">HOT ITEM</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="모던 원목 의자" class="product-image">
-                    <div class="product-info">
-                        <p class="product-name">토브 원목마루 안락의자</p>
-                        <p class="product-price">125,000원</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="라탄 의자" class="product-image">
-                    <div class="product-info">
-                        <p class="product-name">토브 라탄원목 안락의자 스몰</p>
-                        <p class="product-price">79,000원</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="화이트 의자" class="product-image">
-                    <div class="product-info">
-                        <p class="product-name">토브 화이트 플라스틱 의자 1개조</p>
-                        <p class="product-price">140,000원</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="hero-role"><span class="dot"></span>UX·UI 디자인 강사</span>
+      <h1 class="hero-name">박수진<span class="en">Sujin Park · 루씨(Lucy)</span></h1>
+      <p class="hero-desc">디자인 실무에서 쌓은 경험을 가장 쉬운 언어로 풀어냅니다. 피그마와 UX·UI를 가르치고, 책과 영상으로 더 많은 사람의 첫걸음을 돕습니다.</p>
+      <div class="hero-chips">
+        <a class="chip" href="mailto:mybooboo@naver.com"><img class="ic" src="assets/icon-mail.png" alt="">mybooboo@naver.com</a>
+        <a class="chip" href="https://www.youtube.com/@uxui" target="_blank" rel="noopener"><img class="ic" src="assets/icon-megaphone.png" alt="">루씨의 UXUI 디자인</a>
+        <a class="chip" href="https://inf.run/4Bzsj" target="_blank" rel="noopener"><img class="ic" src="assets/icon-window.png" alt="">인프런 · 루씨의 피그마 클래스</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <div class="hero-capsule"></div>
+      <img class="hero-portrait" src="uploads/박수진-투명배경.png" alt="박수진 강사 프로필 사진">
+    </div>
+  </div>
+</section>
 
-    <!-- New Product -->
-    <section class="new-product">
-        <div class="container">
-            <div class="new-product-content">
-                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="새로운 제품" class="new-product-image">
-                <div class="new-product-info">
-                    <h3>TOBEU</h3>
-                    <h2>NEW PRODUCT</h2>
-                    <p>토브의 새로운 컬렉션이 출시되었습니다. 모던한 디자인과 뛰어난 품질을 갖춘 가구로 여러분의 공간을 더욱 특별하게 만들어 보세요. 친환경 소재를 사용하여 지속가능한 라이프스타일을 추구하는 현대인들을 위한 완벽한 선택입니다.</p>
-                    <a href="#" class="view-more-btn">VIEW MORE</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===================== ABOUT ===================== -->
+<section class="about" id="about">
+  <div class="wrap about-grid reveal">
+    <p class="about-lede">현업과 강단을 오가며 <b>실무의 언어로 디자인을 가르칩니다.</b></p>
+    <div class="about-body">
+      <p>그린피스, 홈플러스, 롯데관광, 안랩 등 다양한 산업의 현장에서 디자인 실무를 쌓아왔습니다. 그 경험을 바탕으로 지금은 UX·UI와 피그마를 가르치는 강사로 활동하며, 디자인을 처음 시작하는 사람들이 막힘없이 첫걸음을 뗄 수 있도록 돕습니다.</p>
+      <p>저서 『이토록 쉬운 피그마 클래스』와 유튜브 채널 ‘루씨의 UXUI 디자인’, 인프런 강의를 통해 강의실 밖에서도 꾸준히 지식을 나눕니다. 현재는 <b style="color:var(--tov-action)">Lottie Evangelist</b>로서 모션과 인터랙션 디자인의 가능성을 알리고 있습니다.</p>
+      <div class="tags">
+        <span class="tag">UX·UI 디자인</span>
+        <span class="tag">Figma</span>
+        <span class="tag">디자인 시스템</span>
+        <span class="tag">Lottie · 모션</span>
+        <span class="tag">프로토타이핑</span>
+        <span class="tag">디자인 교육</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Best Product -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">BEST PRODUCT</h2>
-            <div class="best-products">
-                <div class="best-product-card">
-                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="모던 스툴" class="best-product-image">
-                    <div class="best-product-content">
-                        <h4>모던 스툴 원목</h4>
-                        <p>심플한 디자인과 편안함을 동시에 만족시키는 원목 스툴입니다. 다양한 공간에 어울리는 세련된 디자인으로 제작되었습니다.</p>
-                        <div class="product-tags">
-                            <span class="tag">원목</span>
-                            <span class="tag">모던</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="best-product-card">
-                    <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="라탄 체어" class="best-product-image">
-                    <div class="best-product-content">
-                        <h4>프리미엄 라탄 체어</h4>
-                        <p>자연스러운 라탄 소재로 제작된 프리미엄 체어입니다. 통기성이 뛰어나며 내구성 또한 우수한 친환경 가구입니다.</p>
-                        <div class="product-tags">
-                            <span class="tag">라탄</span>
-                            <span class="tag">친환경</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===================== FEATURED CONTENT ===================== -->
+<section class="featured" id="content">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Featured</p>
+      <h2 class="sec-title">강의실 밖에서도 이어지는 배움</h2>
+    </div>
+    <div class="cards-3 reveal">
+      <a class="fcard" href="https://product.kyobobook.co.kr/detail/S000213625223" target="_blank" rel="noopener">
+        <img class="ic" src="assets/icon-doc.png" alt="">
+        <span class="kind">Book</span>
+        <h3>이토록 쉬운 피그마 클래스</h3>
+        <p>피그마를 처음 다루는 사람도 끝까지 따라올 수 있게 쓴 입문서입니다. 루비페이퍼 출간.</p>
+        <span class="go">교보문고에서 보기 <span class="chev">›</span></span>
+      </a>
+      <a class="fcard" href="https://www.youtube.com/@uxui" target="_blank" rel="noopener">
+        <img class="ic" src="assets/icon-megaphone.png" alt="">
+        <span class="kind">YouTube</span>
+        <h3>루씨의 UXUI 디자인</h3>
+        <p>UX·UI와 피그마 노하우를 영상으로 나누는 채널. 실무 팁과 디자인 기초를 함께 다룹니다.</p>
+        <span class="go">채널 바로가기 <span class="chev">›</span></span>
+      </a>
+      <a class="fcard" href="https://inf.run/4Bzsj" target="_blank" rel="noopener">
+        <img class="ic" src="assets/icon-window.png" alt="">
+        <span class="kind">Online Class</span>
+        <h3>루씨의 피그마 클래스</h3>
+        <p>인프런에서 만나는 온라인 강의. 화면 설계부터 프로토타이핑까지 단계별로 익힙니다.</p>
+        <span class="go">인프런에서 수강하기 <span class="chev">›</span></span>
+      </a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h4>TOBEU</h4>
-                    <p>토브는 현대적이고 실용적인 가구를 통해 더 나은 생활공간을 만들어갑니다. 고품질의 소재와 세련된 디자인으로 고객의 라이프스타일을 한 단계 업그레이드시켜드립니다.</p>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 TOBEU. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<!-- ===================== TEACHING ===================== -->
+<section class="teaching" id="teaching">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Teaching</p>
+      <h2 class="sec-title">강의 경력</h2>
+    </div>
+    <div class="teach-grid reveal">
+      <div class="teach-item"><span class="org">내일배움캠프</span><span class="role">UXUI 튜터</span></div>
+      <div class="teach-item"><span class="org">스나이퍼팩토리</span><span class="role">UXUI 디자인 강사</span></div>
+      <div class="teach-item"><span class="org">Codeit</span><span class="role">커리어 멘토</span></div>
+      <div class="teach-item"><span class="org">봄아카데미</span><span class="role">UXUI 디자인 강사</span></div>
+      <div class="teach-item"><span class="org">Kakao x goorm</span><span class="role">프로덕트 디자인 강사</span></div>
+      <div class="teach-item"><span class="org">안랩샘아카데미</span><span class="role">UXUI 강사</span></div>
+      <div class="teach-item"><span class="org">중부여성발전센터</span><span class="role">디자인 강사</span></div>
+      <div class="teach-item"><span class="org">하이미디어 아카데미</span><span class="role">디자인 강사</span></div>
+      <div class="teach-item"><span class="org">영등포여성인력개발센터</span><span class="role">디자인 강사</span></div>
+      <div class="teach-item"><span class="org">서울 남부여성발전센터</span><span class="role">디자인 강사</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CAREER (tinted band) ===================== -->
+<section class="career" id="career">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Career</p>
+      <h2 class="sec-title">디자인 경력</h2>
+      <p>여러 산업을 가로지르며 실무 디자인을 담당한 재직 기업입니다.</p>
+    </div>
+    <div class="company-grid reveal">
+      <div class="company">(재)그린피스</div>
+      <div class="company">(주)홈플러스</div>
+      <div class="company">(주)후이즈</div>
+      <div class="company">(주)이베이 옥션</div>
+      <div class="company">(주)롯데관광</div>
+      <div class="company">(주)다음소프트</div>
+      <div class="company">(주)아이파트너즈</div>
+      <div class="company">(주)AhnLab</div>
+      <div class="company">(주)라이프 앤 소프트</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CERTS ===================== -->
+<section class="certs" id="certs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Certifications</p>
+      <h2 class="sec-title">보유 자격증</h2>
+    </div>
+    <div class="cert-grid reveal">
+      <div class="cert-col">
+        <p class="issuer">국가기술자격</p>
+        <p class="issuer-en">한국산업인력공단</p>
+        <ul>
+          <li><span class="mk">·</span>시각디자인기사<span class="date">2021.08</span></li>
+          <li><span class="mk">·</span>컴퓨터그래픽운용기능사</li>
+          <li><span class="mk">·</span>전자출판기능사</li>
+          <li><span class="mk">·</span>웹디자인기능사</li>
+        </ul>
+      </div>
+      <div class="cert-col">
+        <p class="issuer">GTQ 그래픽 자격</p>
+        <p class="issuer-en">한국생산성본부</p>
+        <ul>
+          <li><span class="mk">·</span>GTQ 일러스트</li>
+          <li><span class="mk">·</span>GTQ 인디자인</li>
+          <li><span class="mk">·</span>GTQ 포토샵</li>
+        </ul>
+      </div>
+      <div class="cert-col">
+        <p class="issuer">데이터 · 애널리틱스</p>
+        <p class="issuer-en">Google</p>
+        <ul>
+          <li><span class="mk">·</span>Advanced Google Analytics</li>
+          <li><span class="mk">·</span>Google Analytics for Beginner</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2>강의 · 협업을 제안해 주세요</h2>
+      <p>UX·UI, 피그마, 디자인 교육 관련 강의와 협업 문의를 환영합니다.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta-mail" href="mailto:mybooboo@naver.com">
+        <img class="ic" src="assets/icon-mail.png" alt="">
+        <span>
+          <span class="lbl" style="display:block">Email</span>
+          <span class="val">mybooboo@naver.com</span>
+        </span>
+      </a>
+      <a class="btn btn-white" href="mailto:mybooboo@naver.com">메일 보내기<span class="chev">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <div class="kr">박수진 <span style="font-weight:500;color:var(--tov-ink-300);font-size:14px;">Sujin Park</span></div>
+      <div class="role">UX·UI 디자인 강사 · 현) Lottie Evangelist</div>
+      <div class="foot-copy" style="margin-top:18px;">© 2026 박수진. All rights reserved.</div>
+    </div>
+    <div class="foot-links">
+      <a href="mailto:mybooboo@naver.com">Email</a>
+      <a href="https://www.youtube.com/@uxui" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://inf.run/4Bzsj" target="_blank" rel="noopener">Inflearn</a>
+      <a href="https://product.kyobobook.co.kr/detail/S000213625223" target="_blank" rel="noopener">Book</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if (!('IntersectionObserver' in window)) return;       // no JS support -> stays visible
+    els.forEach(function(el){ el.classList.add('pre'); });  // hide only after we know we can reveal
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
 </body>
 </html>

@@ -1,0 +1,253 @@
+/* ============================================================
+   TOV / TOBEU Design System — Foundations
+   Source: Figma "Untitled.fig" (page = TOBEU main page)
+   ============================================================ */
+
+/* Pretendard Variable — uploaded by the user (local file) */
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PretendardVariable.ttf") format("truetype-variations"),
+       url("fonts/PretendardVariable.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PretendardVariable.ttf") format("truetype-variations"),
+       url("fonts/PretendardVariable.ttf") format("truetype");
+}
+
+:root {
+  /* -------------------- Brand color -------------------- */
+  --tov-blue-500:   #007EF4;   /* primary action / brand */
+  --tov-blue-600:   #2C54D0;   /* deep accent on icon glyphs */
+  --tov-blue-400:   #457DFF;   /* secondary blue accent */
+  --tov-blue-300:   #5188FD;   /* gradient stop */
+  --tov-blue-200:   #78C4FF;   /* gradient stop (light) */
+
+  /* -------------------- Tinted surfaces ---------------- */
+  --tov-tint-25:    #F8FAFF;   /* near-white icon highlight */
+  --tov-tint-50:    #F5F7F9;   /* icon body wash */
+  --tov-tint-100:   #EEF7FF;   /* section background (Course) */
+  --tov-tint-150:   #E6F0FD;   /* hero capsule background */
+
+  /* -------------------- Neutral foreground ------------- */
+  --tov-ink-900:    #191E26;   /* primary text, headings */
+  --tov-ink-800:    #20272E;   /* over-image text/overlays */
+  --tov-ink-700:    #333A46;   /* secondary heading / dark surface */
+  --tov-ink-600:    #393D45;   /* footer surface */
+  --tov-ink-500:    #65737F;   /* body / secondary text  (Figma 65,111,131) */
+  --tov-ink-400:    #7C889F;   /* tertiary / muted, button-outline border */
+  --tov-ink-300:    #A7AFBE;   /* placeholder / footer text */
+
+  /* -------------------- Hairlines & lines -------------- */
+  --tov-line-100:   #E1E5EC;   /* primary card/divider border */
+  --tov-line-200:   #EBEEF4;   /* softer divider */
+  --tov-line-300:   #CED3DE;   /* small inline vertical divider */
+  --tov-line-400:   #DFE4F1;   /* gradient stop on shadow halo */
+
+  /* -------------------- Backgrounds -------------------- */
+  --tov-bg-canvas:  #F5F6FA;   /* page outer canvas */
+  --tov-bg-surface: #FFFFFF;   /* default card / surface */
+  --tov-bg-dark:    #393D45;   /* footer */
+
+  /* -------------------- Status / utility --------------- */
+  --tov-warm-100:   #FFE5C5;   /* warm fill (section markers) */
+  --tov-accent-purple: #9747FF; /* design-only dashed accent */
+
+  /* -------------------- Brand gradients ---------------- */
+  --tov-grad-blue:   linear-gradient(180deg, var(--tov-blue-200) 0%, var(--tov-blue-300) 100%);
+  --tov-grad-surface:linear-gradient(180deg, var(--tov-tint-25) 1%, var(--tov-tint-50) 99%);
+
+  /* ====================================================
+     TYPOGRAPHY — base
+     ==================================================== */
+  --tov-font-sans: "Pretendard", "Pretendard Variable",
+                   -apple-system, BlinkMacSystemFont,
+                   "Apple SD Gothic Neo", "Noto Sans KR",
+                   "Helvetica Neue", Arial, sans-serif;
+
+  /* Font weights actually used in Figma */
+  --tov-fw-regular: 400;
+  --tov-fw-medium:  500;
+  --tov-fw-semi:    600;
+  --tov-fw-bold:    700;
+  --tov-fw-black:   900;
+
+  /* Type scale (px → rem, 16px root) */
+  --tov-fs-display:  48px;   /* hero "IT전문가를 위한 첫걸음 …" */
+  --tov-fs-h1:       40px;   /* section headlines, "궁금증을…" */
+  --tov-fs-h2:       28px;   /* "토브그룹은…", tab labels */
+  --tov-fs-h3:       24px;   /* card sub-heads */
+  --tov-fs-h4:       20px;   /* course-card title */
+  --tov-fs-lead:     18px;   /* link text / callouts */
+  --tov-fs-body:     16px;   /* paragraph body */
+  --tov-fs-small:    15px;   /* footer pill label */
+  --tov-fs-meta:     14px;   /* meta, dates, sub-nav */
+  --tov-fs-tiny:     12px;   /* copyright / disclosures */
+  --tov-fs-micro:    11px;   /* © line */
+
+  /* Line-heights — Korean text wants a touch more space */
+  --tov-lh-tight:   1.0;
+  --tov-lh-snug:    1.28;
+  --tov-lh-normal:  1.4;     /* Korean body default */
+  --tov-lh-loose:   1.55;
+
+  /* Letter-spacing — tracks tight, Korean convention */
+  --tov-ls-display: -1.76px;
+  --tov-ls-h1:      -1.60px;
+  --tov-ls-h2:      -1.12px;
+  --tov-ls-h3:      -0.52px;
+  --tov-ls-h4:      -0.44px;
+  --tov-ls-lead:    -0.35px;
+  --tov-ls-body:    -0.32px;
+  --tov-ls-meta:    -0.28px;
+  --tov-ls-tiny:    -0.24px;
+
+  /* ====================================================
+     SPACING — based on observed Figma values
+     ==================================================== */
+  --tov-space-1:  4px;
+  --tov-space-2:  8px;
+  --tov-space-3:  12px;
+  --tov-space-4:  16px;
+  --tov-space-5:  20px;
+  --tov-space-6:  24px;
+  --tov-space-7:  32px;
+  --tov-space-8:  40px;
+  --tov-space-9:  52px;
+  --tov-space-10: 60px;
+  --tov-space-11: 80px;
+  --tov-space-12: 100px;
+
+  /* Page-grid: 1232px content, centered in 1920 (344px gutters) */
+  --tov-grid-max: 1232px;
+  --tov-grid-gutter: 344px;
+
+  /* ====================================================
+     RADII
+     ==================================================== */
+  --tov-radius-sm:  10px;  /* buttons */
+  --tov-radius-md:  20px;  /* small cards, capsules */
+  --tov-radius-lg:  32px;  /* primary cards */
+  --tov-radius-full: 1000px;
+
+  /* ====================================================
+     SHADOWS — observed Figma drop-shadows
+     ==================================================== */
+  --tov-shadow-xs:  -1px 1px 2px 0 rgba(0,0,0,0.04);    /* quick-link rail */
+  --tov-shadow-sm:  -1px 3px 2px 0 rgba(0,0,0,0.04);    /* header */
+  --tov-shadow-md:   0 8px 24px 0 rgba(0,0,0,0.04);     /* course card */
+  --tov-shadow-lg:   8px 16px 40px 0 rgba(0,0,0,0.06);  /* hero login card */
+
+  /* Icon inner glow (the "3D" pill of an isometric icon) */
+  --tov-shadow-inset-icon:
+       inset 3.93px -3.93px 9.83px 0 var(--tov-line-400);
+
+  /* ====================================================
+     ANIMATION
+     ==================================================== */
+  --tov-ease-out:  cubic-bezier(0.16, 0.84, 0.44, 1);   /* Korean UI default */
+  --tov-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --tov-dur-fast: 120ms;
+  --tov-dur-base: 200ms;
+  --tov-dur-slow: 320ms;
+}
+
+/* ============================================================
+   SEMANTIC ROLES — use these in components
+   ============================================================ */
+:root {
+  --tov-text-1: var(--tov-ink-900);   /* primary text */
+  --tov-text-2: var(--tov-ink-700);   /* secondary text */
+  --tov-text-3: var(--tov-ink-500);   /* body / muted */
+  --tov-text-4: var(--tov-ink-400);   /* tertiary / placeholder */
+  --tov-text-on-dark: #FFFFFF;
+  --tov-text-on-dark-muted: var(--tov-ink-300);
+
+  --tov-bg-1: var(--tov-bg-surface);  /* card / panel */
+  --tov-bg-2: var(--tov-bg-canvas);   /* page outer */
+  --tov-bg-3: var(--tov-tint-100);    /* tinted band */
+  --tov-bg-accent: var(--tov-tint-150);
+
+  --tov-border-1: var(--tov-line-100);
+  --tov-border-2: var(--tov-line-200);
+
+  --tov-action: var(--tov-blue-500);
+  --tov-action-hover: #006FD4;
+  --tov-action-press: #0061B8;
+  --tov-action-fg: #FFFFFF;
+}
+
+/* ============================================================
+   SEMANTIC TYPE CLASSES (.tov-h1 etc.) — apply directly
+   ============================================================ */
+.tov-display, h1.tov-hero {
+  font: var(--tov-fw-regular) var(--tov-fs-display)/1.28 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-display);
+  color: var(--tov-text-1);
+  text-wrap: pretty;
+}
+.tov-h1 {
+  font: var(--tov-fw-bold) var(--tov-fs-h1)/1.4 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-h1);
+  color: var(--tov-text-1);
+}
+.tov-h2 {
+  font: var(--tov-fw-regular) var(--tov-fs-h2)/1.4 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-h2);
+  color: var(--tov-text-1);
+}
+.tov-h3 {
+  font: var(--tov-fw-regular) var(--tov-fs-h3)/1.5 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-h3);
+  color: var(--tov-text-1);
+}
+.tov-h4 {
+  font: var(--tov-fw-bold) var(--tov-fs-h4)/1.5 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-h4);
+  color: var(--tov-text-1);
+}
+.tov-lead {
+  font: var(--tov-fw-bold) var(--tov-fs-lead)/1.4 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-lead);
+  color: var(--tov-text-2);
+}
+.tov-body {
+  font: var(--tov-fw-bold) var(--tov-fs-body)/1.375 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-body);
+  color: var(--tov-text-3);
+}
+.tov-body-regular {
+  font: var(--tov-fw-regular) var(--tov-fs-body)/1.5 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-body);
+  color: var(--tov-text-3);
+}
+.tov-meta {
+  font: var(--tov-fw-bold) var(--tov-fs-meta)/1.5 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-meta);
+  color: var(--tov-text-3);
+}
+.tov-tiny {
+  font: var(--tov-fw-bold) var(--tov-fs-tiny)/1.4 var(--tov-font-sans);
+  letter-spacing: var(--tov-ls-tiny);
+  color: var(--tov-text-4);
+}
+
+/* ============================================================
+   BASE PAGE
+   ============================================================ */
+html, body {
+  margin: 0;
+  font-family: var(--tov-font-sans);
+  color: var(--tov-text-1);
+  background: var(--tov-bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+* { box-sizing: border-box; }

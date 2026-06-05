@@ -1,0 +1,319 @@
+/* ===== 햄찌와 함께 1일 10분 피그마 클래스 — 홍보 랜딩 스타일 ===== */
+
+@font-face {
+  font-family: 'MapoBackpackTravel';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoBackpackingA.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
+:root {
+  /* warm cream/berry palette tuned to the book cover */
+  --berry-50:  #FFF3F6;
+  --berry-100: #FFE9F0;
+  --berry-200: #FFD2DE;
+  --berry-300: #FFB3C4;
+  --berry-400: #FF8AAA;
+  --berry-500: #FF6B8B;
+  --berry-600: #E0577A;
+  --berry-700: #B23F5C;
+
+  --sky-100: #EAF6FF;
+  --sky-200: #CDEBFF;
+  --sky-400: #6FC7FF;
+  --sky-500: #3FA8E8;
+  --sky-600: #2B85B5;
+
+  --grass-300: #A7E484;
+  --grass-500: #7ED957;
+  --grass-700: #4A9E34;
+
+  --cream-50:  #FFFCF5;
+  --cream-100: #FFF7E8;
+  --cream-200: #FFEFD3;
+  --cream-300: #FBE3B7;
+
+  --straw:     #FF5A5A;
+  --straw-deep:#E83E3E;
+
+  --ink-900: #4A3326;
+  --ink-700: #6B4A37;
+  --ink-500: #99775F;
+  --ink-300: #C5AE9C;
+  --ink-100: #EEE2D6;
+
+  --paper:   #FFFAF2;
+  --paper-2: #FFFFFF;
+
+  /* tweakable accent (default berry) */
+  --accent: var(--berry-500);
+  --accent-deep: var(--berry-600);
+  --accent-soft: var(--berry-100);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: 'Gowun Dodum', 'Jua', system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% -5%, var(--berry-100) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 5% 12%, var(--sky-100) 0%, transparent 55%),
+    var(--paper);
+  color: var(--ink-900);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root { position: relative; z-index: 1; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+@media (max-width: 680px) {
+  .wrap { padding: 0 20px; }
+}
+
+/* ===== Typography helpers ===== */
+.f-jua { font-family: 'Jua', sans-serif; }
+.f-body { font-family: 'Gowun Dodum', sans-serif; }
+.f-en { font-family: 'Fredoka', sans-serif; }
+.f-mono { font-family: 'JetBrains Mono', monospace; }
+.nowrap { white-space: nowrap; }
+
+.eyebrow {
+  font-family: 'Fredoka', 'Jua', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+/* ===== Top nav ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 250, 242, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ink-100);
+}
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Jua', sans-serif;
+  font-size: 17px;
+  color: var(--ink-900);
+}
+.nav-pub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-500);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 680px) {
+  .nav-inner { padding: 10px 20px; }
+  .nav-pub { display: none; }
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: 'Jua', sans-serif;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .14s ease, box-shadow .14s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active { transform: translateY(3px); }
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: white;
+  font-size: 19px;
+  padding: 16px 30px;
+  border: 3px solid white;
+  box-shadow: 0 6px 0 var(--accent-deep), 0 16px 26px -10px color-mix(in srgb, var(--accent-deep) 60%, transparent);
+}
+.btn-primary:active { box-shadow: 0 3px 0 var(--accent-deep), 0 8px 14px -8px color-mix(in srgb, var(--accent-deep) 55%, transparent); }
+
+.btn-sm {
+  font-size: 15px;
+  padding: 10px 20px;
+  border: 2.5px solid white;
+  box-shadow: 0 4px 0 var(--accent-deep);
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: white;
+}
+.btn-sm:active { box-shadow: 0 2px 0 var(--accent-deep); }
+
+.btn-ghost {
+  background: white;
+  color: var(--accent-deep);
+  font-size: 18px;
+  padding: 15px 28px;
+  border: 2.5px solid var(--berry-200);
+  box-shadow: 0 5px 0 var(--berry-100);
+}
+.btn-ghost:active { box-shadow: 0 2px 0 var(--berry-100); }
+
+/* ===== Pills / chips ===== */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  font-family: 'Jua', sans-serif;
+  font-size: 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.pill-cream {
+  background: var(--cream-100);
+  color: var(--ink-700);
+  border: 2px solid var(--cream-300);
+}
+.pill-berry {
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  border: 2px solid var(--berry-200);
+}
+.pill-sky {
+  background: var(--sky-100);
+  color: var(--sky-600);
+  border: 2px solid var(--sky-200);
+}
+
+/* ===== Section scaffolding ===== */
+.section { position: relative; padding: 88px 0; }
+@media (max-width: 680px) { .section { padding: 60px 0; } }
+
+.section-head { text-align: center; margin-bottom: 52px; }
+.section-title {
+  font-family: 'MapoBackpackTravel', 'Jua', sans-serif;
+  font-size: clamp(28px, 4.4vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin: 14px 0 12px;
+  color: var(--ink-900);
+}
+.section-sub {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: clamp(15px, 1.7vw, 17px);
+  color: var(--ink-500);
+  max-width: 30em;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.section-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: white;
+  border: 2px solid var(--berry-200);
+  border-radius: 999px;
+  font-family: 'Jua', sans-serif;
+  font-size: 14px;
+  color: var(--accent-deep);
+  box-shadow: 0 4px 14px -8px rgba(178, 63, 92, 0.4);
+}
+
+/* ===== Card ===== */
+.card {
+  background: var(--paper-2);
+  border: 1px solid var(--ink-100);
+  border-radius: 26px;
+  box-shadow: 0 16px 34px -22px rgba(107, 74, 55, 0.4);
+}
+
+/* section heading font (마포배낭여행) */
+.f-title { font-family: 'MapoBackpackTravel', 'Jua', sans-serif; }
+
+/* divider doodle */
+.dash-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--ink-300);
+}
+.dash-rule::before, .dash-rule::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(90deg, var(--ink-300) 0 6px, transparent 6px 12px);
+}
+
+/* ===== animations ===== */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-12px) rotate(calc(var(--rot, 0deg) + 1deg)); }
+}
+.bob { animation: bob 4.5s ease-in-out infinite; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: .4; transform: scale(.85); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+.twinkle { animation: twinkle 2.6s ease-in-out infinite; transform-origin: center; }
+
+@keyframes drift {
+  0%, 100% { transform: translate(0,0) rotate(var(--rot, 0deg)); }
+  50% { transform: translate(8px,-10px) rotate(calc(var(--rot, 0deg) + 5deg)); }
+}
+.drift { animation: drift 6s ease-in-out infinite; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+.wiggle { animation: wiggle 2.6s ease-in-out infinite; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal.in {
+  animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bob, .twinkle, .drift, .wiggle { animation: none; }
+  .reveal { opacity: 1; }
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--cream-100);
+  border-top: 2px dashed var(--cream-300);
+  padding: 44px 0 56px;
+  text-align: center;
+}
